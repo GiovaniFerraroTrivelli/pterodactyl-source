@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM debian:trixie-slim
 
 LABEL author="Custom" maintainer="you@example.com"
 
@@ -39,7 +39,7 @@ RUN dpkg --add-architecture i386 \
     libtinfo6:i386 \
     libncurses6:i386 \
     libncursesw6:i386 \
-    libtcmalloc-minimal4:i386 \
+    libgoogle-perftools4t64:i386 \
     faketime:i386 \
     # 64-bit libs
     libtinfo6 \
