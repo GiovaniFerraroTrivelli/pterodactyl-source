@@ -5,10 +5,8 @@ if [ -n "${SRCDS_APPID}" ]; then
     ./steamcmd/steamcmd.sh +force_install_dir /home/container +login anonymous +app_update ${SRCDS_APPID} ${SRCDS_BETAID} ${SRCDS_BETAPASS} validate +quit
 fi
 
-# Fix executable stack on old HLDS binaries (required by modern kernels)
-for so in /home/container/engine_i486.so /home/container/engine_i686.so /home/container/hlds_linux; do
-    [ -f "$so" ] && patchelf --clear-execstack "$so" 2>/dev/null
-done
+# Fix executable stack on all .so files and HLDS binary (required by modern kernels)
+find /home/container -type f \( -name "*.so" -o -name "*.so.*" -o -name "hlds_linux" \) -exec patchelf --clear-execstack {} \; 2>/dev/null
 
 # Replace startup variables
 MODIFIED_STARTUP=$(echo -e ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')
