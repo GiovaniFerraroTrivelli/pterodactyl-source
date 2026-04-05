@@ -7,7 +7,7 @@ fi
 
 # Fix executable stack on old HLDS binaries (required by modern kernels)
 for so in /home/container/engine_i486.so /home/container/engine_i686.so /home/container/hlds_linux; do
-    [ -f "$so" ] && execstack -c "$so" 2>/dev/null
+    [ -f "$so" ] && patchelf --clear-execstack "$so" 2>/dev/null
 done
 
 # Replace startup variables

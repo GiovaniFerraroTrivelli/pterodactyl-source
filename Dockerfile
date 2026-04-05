@@ -25,7 +25,7 @@ RUN dpkg --add-architecture i386 \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
     # Base tools
-    bash curl ca-certificates tar tini locales execstack \
+    bash curl ca-certificates tar tini locales patchelf \
     # 32-bit libs (SteamCMD + HLDS + AMXX)
     libc6:i386 \
     lib32gcc-s1 \
