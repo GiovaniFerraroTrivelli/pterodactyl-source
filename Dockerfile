@@ -36,6 +36,9 @@ RUN dpkg --add-architecture i386 \
     libtinfo6:i386 \
     libncurses6:i386 \
     libgoogle-perftools4t64:i386 \
+    # Database libs (required by AMXX/Metamod plugins)
+    libmysqlclient21:i386 \
+    libpq5:i386 \
     # 64-bit libs
     libstdc++6 \
     libtinfo6 \
