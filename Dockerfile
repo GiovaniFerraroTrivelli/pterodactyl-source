@@ -37,7 +37,7 @@ RUN dpkg --add-architecture i386 \
     libncurses6:i386 \
     libgoogle-perftools4t64:i386 \
     # Database libs (required by AMXX/Metamod plugins)
-    libmysqlclient21:i386 \
+    libmariadb3:i386 \
     libpq5:i386 \
     # 64-bit libs
     libstdc++6 \
@@ -48,6 +48,7 @@ RUN dpkg --add-architecture i386 \
     gettext-base \
  && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
  && locale-gen \
+ && ln -s /usr/lib/i386-linux-gnu/libmariadb.so.3 /usr/lib/i386-linux-gnu/libmysqlclient.so.21 \
  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /var/log/* /tmp/* /usr/share/doc/* /usr/share/man/*
